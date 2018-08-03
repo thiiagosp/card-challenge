@@ -1,9 +1,11 @@
-import Vue from 'vue'
-import App from './App'
+import Vue from 'vue';
+import App from './App';
 
 import './assets/sass/valtech.scss';
+import VueLazyload from 'vue-lazyload';
 
-Vue.config.productionTip = false
+Vue.use(VueLazyload);
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({

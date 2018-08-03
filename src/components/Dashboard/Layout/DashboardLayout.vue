@@ -1,6 +1,6 @@
 <template>
     <div class="main-panel">
-        <dashboard-content/>
+        <dashboard-content></dashboard-content>
     </div>
 </template>
 <style lang="scss">
@@ -10,7 +10,7 @@ import DashboardContent from './Content';
 
 export default {
     components: {
-        'dashboard-content': DashboardContent,
-    },
+        'dashboard-content': DashboardContent
+    }
 };
 </script>
