@@ -1,10 +1,12 @@
 <template>
     <div v-bind:class="cardGridClass" class="card" v-lazy:background-image="backgroundImage">
         <div class="card-body">
-            <p class="card__subtitle">{{ card.subtitle }}</p>
-            <p class="card__title">{{ card.title }}</p>
-            <p class="card__text">{{ card.text }}</p>
-            <button class="card__button">Explore More</button>
+            <div class="card-overlay">
+                <p class="card__subtitle">{{ card.subtitle }}</p>
+                <p class="card__title">{{ card.title }}</p>
+                <p class="card__text">{{ card.text }}</p>
+                <button class="card__button">Explore More</button>
+            </div>
         </div>
     </div>
 </template>
@@ -21,15 +23,28 @@
     background-size: cover;
     font-family: "Open Sans";
     text-align: center;
+    position: relative;
     .card-body {
         height: 100%;
         width: 100%;
         word-wrap: break-word;
-        padding-top: 120px;
-        padding-bottom: 20px;
         background-color: rgba(20, 20, 20, 0.5);
+        .card-overlay {
+            width: 100%;
+            left:50%;
+            top:50%;
+            -webkit-transform: translate(-50%, -20%);
+            -moz-transform: translate(-50%, -20%);
+            transform: translate(-50%, -20%);
+            position: absolute;
+        }
     }
     &:first-child & {
+        .card-overlay {
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
         &__text {
             opacity: 1;
         }
@@ -64,8 +79,11 @@
         color: #fff;
         text-align: center;
         margin: 0 auto;
-        max-width: 450px;
+        max-width: 250px;
         opacity: 0;
+        -webkit-animation: fade-in-bottom-return 1s cubic-bezier(0.39, 0.575, 0.565, 1)
+            both;
+        animation: fade-in-bottom-return 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
     }
     &__button {
         background-color: transparent;
@@ -76,12 +94,14 @@
         padding: 10px 15px;
         font-weight: bold;
         opacity: 0;
+        -webkit-animation: fade-in-return 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+        animation: fade-in-return 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
     }
     &:hover:not(:first-child) & {
         &__subtitle,
         &__title {
-            -webkit-animation: slide-top 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-            animation: slide-top 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+            -webkit-animation: slide-top .7s ease-in-out both;
+            animation: slide-top .7s ease-in-out both;
         }
         &__text {
             -webkit-animation: fade-in-bottom 1s cubic-bezier(0.39, 0.575, 0.565, 1)
@@ -89,19 +109,22 @@
             animation: fade-in-bottom 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
         }
         &__button {
-            -webkit-animation: fade-in 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-            animation: fade-in 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+            -webkit-animation: fade-in 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+            animation: fade-in 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
         }
     }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .card {
+        &:first-child {
+            height: 760px;
+        }
         .card-body {
-            padding-top: 100px;
+            // padding-top: 120px;
         }
         &__text {
-            max-width: 250px;
+            max-width: 450px;
         }
     }
 }
