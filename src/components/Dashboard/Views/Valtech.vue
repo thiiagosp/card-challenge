@@ -10,9 +10,10 @@
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
     &__item {
+        min-height: 280px;
         grid-column: 2 / span 2;
-        height: 300px;
-        width: 300px;
+        height: 280px;
+        width: 280px;
         &:first-child & {
             .card__text {
                 opacity: 1;
@@ -21,8 +22,8 @@
         &__full,
         &__first-half,
         &__second-half {
-            height: 300px;
-            width: 300px;
+            height: 280px;
+            width: 280px;
             grid-column: 2 / span 2;
         }
     }
@@ -32,7 +33,7 @@
     .grid {
         margin: 80px 50px;
         &__item {
-            min-height: 300px;
+            min-height: 360px;
             grid-column: auto;
             height: inherit;
             width: inherit;

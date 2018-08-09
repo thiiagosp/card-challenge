@@ -17,7 +17,7 @@
 }
 .card {
     border-radius: 8px;
-    min-height: 360px;
+    min-height: 280px;
     height: 100%;
     overflow: hidden;
     background-size: cover;
@@ -59,9 +59,9 @@
         text-transform: uppercase;
         margin: 0;
         width: 100%;
-        -webkit-animation: slide-top-return 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+        -webkit-animation: slide-top-back 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
         both;
-        animation: slide-top-return 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        animation: slide-top-back 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
     }
     &__title {
         font-size: 32px;
