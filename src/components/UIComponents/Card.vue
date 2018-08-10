@@ -116,7 +116,7 @@
 
 @media (min-width: 768px) {
     .card {
-        padding-top: 55%;
+        padding-top: 50%;
         &:first-child & {
             &__body {
                 &__overlay {
