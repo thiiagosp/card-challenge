@@ -4,7 +4,7 @@
 <style>
 </style>
 <script>
-import Valtech from '../Views/Valtech.vue';
+import Valtech from '../Views/Valtech/Valtech.vue';
 export default {
     components: {
         Valtech

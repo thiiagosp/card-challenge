@@ -1,0 +1,13 @@
+{
+    "title": "Card",
+    "status": "ready",
+    "context": {
+        "card": {
+            "title": "Valtech",
+            "subtitle": "Front-end",
+            "text": "Hello Workd"
+        },
+        "cardGridClass": "grid__item__full",
+        "backgroundImage": "/static/images/Lagoa.jpg"
+    }
+}

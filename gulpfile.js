@@ -4,28 +4,62 @@ const gulp = require('gulp');
 const shell = require('gulp-shell');
 const fractal = require('@frctl/fractal').create();
 const open = require('opn');
+const rename = require('gulp-rename');
+const sass = require('gulp-sass');
+const concat = require('gulp-concat');
+const sassGlob = require('gulp-sass-glob');
 
-fractal.set('project.title', 'valtech-front'); // title for the project
-fractal.web.set('builder.dest', 'public'); // destination for the static export
+fractal.set('project.title', 'valtech-front');
+fractal.web.set('builder.dest', 'public');
 fractal.web.set('static.path', __dirname + '/static');
-fractal.docs.set('path', `${__dirname}/docs`); // location of the documentation directory.
-fractal.components.set('path', `${__dirname}/src/components`); // location of the component directory.
-fractal.components.set('ext', '.html') // using html files for component docs
-fractal.components.set('default.preview', '@layout'); // layout for components
+fractal.docs.set('path', `${__dirname}/docs`);
+fractal.components.set('path', `${__dirname}/src/components`);
+fractal.components.set('ext', '.html');
+fractal.web.set('static.path', __dirname + '/public');
+
+
+fractal.components.set('resources', {
+    scss: {
+        label: 'SCSS',
+        match: ['**/*.scss']
+    },
+    s: {
+        label: 'JS',
+        match: ['**/*.js']
+    },
+    other: {
+        label: 'Other Assets',
+        match: ['**/*', '!**/*.scss', '!**.css']
+    }
+});
 
 const logger = fractal.cli.console;
 
-
-// Development tasks
 gulp.task('default', function() {
     gulp.start('front-dev');
     gulp.start('back-dev');
     gulp.start('docs-dev');
 });
 
+const scssFilesPath = ['./src/components/**/*.scss','./src/components/**/**/*.scss', './src/assets/sass/**/*.scss'];
+
+gulp.task('styles', function() {
+	gulp.src(scssFilesPath)
+	.pipe(sassGlob())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(concat('main.scss'))
+	.pipe(rename('main.css'))
+	.pipe(gulp.dest('./public/stylesheets'))
+});
+
+gulp.task('watch', function(){
+	gulp.watch(scssFilesPath , ['styles']);
+})
+
 gulp.task('front-dev', shell.task(['npm run dev']));
 gulp.task('build', function(){
 
+    gulp.start('watch');
     gulp.start('front-dev');
     const server = fractal.web.server({
         sync: true
@@ -36,8 +70,6 @@ gulp.task('build', function(){
     });
 });
 
-
-// Build tasks
 gulp.task('build-all', function() {
     gulp.start('front-build');
     gulp.start('docs-build');

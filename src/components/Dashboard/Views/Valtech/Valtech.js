@@ -1,64 +1,4 @@
-<template>
-    <div class="grid">
-        <Card v-for="card in cards" :key="card.title" :card="card"></Card>
-    </div>
-</template>
-<style lang="scss">
-.grid {
-    margin: 50px auto;
-    display: grid;
-    // grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
-    &__item {
-        min-height: 280px;
-        grid-column: 2 / span 2;
-        height: 280px;
-        width: 280px;
-        &:first-child & {
-            .card__text {
-                opacity: 1;
-            }
-        }
-        &__full,
-        &__first-half,
-        &__second-half {
-            height: 280px;
-            width: 280px;
-            grid-column: 2 / span 2;
-        }
-    }
-}
-
-@media (min-width: 768px) {
-    .grid {
-        margin: 80px 50px;
-        &__item {
-            min-height: 360px;
-            grid-column: auto;
-            height: inherit;
-            width: inherit;
-            &__full,
-            &__first-half,
-            &__second-half {
-                height: inherit;
-                width: inherit;
-            }
-            &__full {
-                // height: inherit;
-                grid-column: 1 / span 4;
-            }
-            &__first-half {
-                grid-column: 1 / span 2;
-            }
-            &__second-half {
-                grid-column: 3 / span 2;
-            }
-        }
-    }
-}
-</style>
-<script>
-import Card from '@/components/UIComponents/Card.vue';
+import Card from '@/components/UIComponents/Card/Card.vue';
 export default {
     components: {
         Card
@@ -134,4 +74,3 @@ export default {
         }
     }
 };
-</script>
